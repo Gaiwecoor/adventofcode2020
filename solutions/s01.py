@@ -1,10 +1,10 @@
 def setup(input):
     with open(input) as f:
         data = [int(line) for line in f.read().splitlines()]
+    data.sort()
     return data
 
 def part1(data):
-    data.sort()
     for num1 in range(len(data) - 1):
         for num2 in range(num1 + 1, len(data)):
             sum = data[num1] + data[num2]
