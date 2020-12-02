@@ -2,14 +2,15 @@
 ##  SETUP  ##
 #############
 import re
-file = "02.txt"
 
 def parse(line):
     match = re.search(r"^(\d+)\-(\d+) (\w): (\w+)$", line)
     return (int(match.group(1)), int(match.group(2)), match.group(3), match.group(4))
 
-with open("../input/" + file) as f:
-    data = [parse(line) for line in f.read().splitlines()]
+def setup(file):
+    with open(file) as f:
+        data = [parse(line) for line in f.read().splitlines()]
+    return data
 
 ##############
 ##  PART 1  ##
@@ -32,11 +33,9 @@ def valid2(line):
 def part2(data):
     return sum([valid2(line) for line in data])
 
-#################
-##  EXECUTION  ##
-#################
-print("\nPart 1:")
-print(part1(data))
-
-print("\nPart 2:")
-print(part2(data))
+if __name__ == "__main__":
+    data = setup("../input/02.txt")
+    print("\nPart 1:")
+    print(part1(data))
+    print("\nPart 2:")
+    print(part2(data))

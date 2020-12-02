@@ -1,13 +1,8 @@
-#############
-##  SETUP  ##
-#############
-file = "01.txt"
-with open("../input/" + file) as f:
-    data = [int(line) for line in f.read().splitlines()]
+def setup(input):
+    with open(input) as f:
+        data = [int(line) for line in f.read().splitlines()]
+    return data
 
-##############
-##  PART 1  ##
-##############
 def part1(data):
     data.sort()
     for num1 in range(len(data) - 1):
@@ -18,9 +13,6 @@ def part1(data):
             elif sum == 2020:
                 return (data[num1] * data[num2])
 
-##############
-##  PART 2  ##
-##############
 def part2(data):
     for num1 in range(len(data) - 2):
         for num2 in range(num1 + 1, len(data) - 1):
@@ -32,12 +24,9 @@ def part2(data):
                 elif sum == 2020:
                     return (data[num1] * data[num2] * data[num3])
 
-#################
-##  EXECUTION  ##
-#################
-
-print("\nPart 1:")
-print(part1(data))
-
-print("\nPart 2:")
-print(part2(data))
+if __name__ == "__main__":
+    data = setup("../input/01.txt")
+    print("\nPart 1:")
+    print(part1(data))
+    print("\nPart 2:")
+    print(part2(data))
