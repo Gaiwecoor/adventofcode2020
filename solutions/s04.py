@@ -2,12 +2,12 @@
 ##  SETUP  ##
 #############
 import re
+EXP_HGT = re.compile(r"^((59|6\d|7[0-6])in)|((1[5-8]\d|19[0-3])cm)$")
+EXP_HCL = re.compile(r"^#[0-9a-f]{6}$")
+EXP_PID = re.compile(r"^\d{9}$")
+REQ_FIELDS = ["byr", "iyr", "ecl", "pid", "eyr", "hcl", "hgt"]
 
 class Passport:
-    req_fields = ["byr", "iyr", "ecl", "pid", "eyr", "hcl", "hgt"]
-    EXP_HGT = re.compile(r"^((59|6\d|7[0-6])in)|((1[5-8]\d|19[0-3])cm)$")
-    EXP_HCL = re.compile(r"^#[0-9a-f]{6}$")
-    EXP_PID = re.compile(r"^\d{9}$")
 
     def __init__(self, info):
         info = info.split()
@@ -16,13 +16,13 @@ class Passport:
             setattr(self, key_val[0], key_val[1])
 
     def valid1(self):
-        return [hasattr(self, field) for field in self.req_fields].count(True) == 7
+        return [hasattr(self, field) for field in REQ_FIELDS].count(True) == 7
 
     def valid2(self):
         if not self.valid1():
             return False
 
-        for key in self.req_fields:
+        for key in REQ_FIELDS:
             value = getattr(self, key)
             if key == "byr" and not (1920 <= int(value) <= 2002):
                 return False
@@ -30,13 +30,13 @@ class Passport:
                 return False
             elif key == "eyr" and not (2020 <= int(value) <= 2030):
                 return False
-            elif key == "hgt" and not self.EXP_HGT.match(value):
+            elif key == "hgt" and not EXP_HGT.match(value):
                 return False
-            elif key == "hcl" and not self.EXP_HCL.match(value):
+            elif key == "hcl" and not EXP_HCL.match(value):
                 return False
             elif key == "ecl" and value not in ["amb", "blu", "brn", "gry", "grn", "hzl", "oth"]:
                 return False
-            elif key == "pid" and not self.EXP_PID.match(value):
+            elif key == "pid" and not EXP_PID.match(value):
                 return False
 
         return True
