@@ -2,9 +2,10 @@
 ##  SETUP  ##
 #############
 import re
+exp = re.compile(r"^(\d+)\-(\d+) (\w): (\w+)$")
 
 def parse(line):
-    match = re.search(r"^(\d+)\-(\d+) (\w): (\w+)$", line)
+    match = exp.match(line)
     return (int(match.group(1)), int(match.group(2)), match.group(3), match.group(4))
 
 def setup(file):
