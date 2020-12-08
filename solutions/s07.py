@@ -78,7 +78,7 @@ def part1(data):
 ##  PART 2  ##
 ##############
 def part2(data):
-    return data.get("shiny gold").weight() - 1
+    return data["shiny gold"].weight() - 1
 
 if __name__ == "__main__":
     data = setup("../input/07.txt")
