@@ -15,12 +15,13 @@ def part1(data):
 ##############
 ##  PART 2  ##
 ##############
-def part2(data):
+def part2(data, p1):
     pass
 
 if __name__ == "__main__":
     data = setup("../input/input.txt")
     print("\nPart 1:")
-    print(part1(data))
+    p1 = part1(data)
+    print(p1)
     print("\nPart 2:")
-    print(part2(data))
+    print(part2(data, p1))

@@ -52,8 +52,7 @@ def part1(data):
 ##############
 ##  PART 2  ##
 ##############
-def part2(data):
-    weak = part1(data)
+def part2(data, weak):
     for i in range(len(data) - 1):
         sum = data[i]
         if sum >= weak:
@@ -68,6 +67,7 @@ def part2(data):
 if __name__ == "__main__":
     data = setup("../input/09.txt")
     print("\nPart 1:")
-    print(part1(data))
+    p1 = part1(data)
+    print(p1)
     print("\nPart 2:")
-    print(part2(data))
+    print(part2(data, p1))
